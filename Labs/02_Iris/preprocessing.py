@@ -12,8 +12,9 @@ def load_data():
 # Preprocess the data
 def preprocess_data(data):
     # Standardize features (exclude the 'target' column)
+    data['sepal_petal_radio'] = data['sepal length (cm)'] / data['petal length (cm)']
     scaler = StandardScaler()
-    features = data.drop(columns=['target'])
+    features = data.drop(columns=['target', 'sepal_petal_radio'])
     data[features.columns] = scaler.fit_transform(features)  # Apply scaling to features
 
     # Ensure that the target variable is of type integer (it's categorical)
@@ -24,4 +25,5 @@ def preprocess_data(data):
 if __name__ == "__main__":
     data = load_data()  # Load the Iris dataset
     data = preprocess_data(data)  # Preprocess the dataset (scaling)
-    print(data.head())
+    data.to_csv("cleaned_data.csv", index=False)
+    print("Preprocessed data saved as 'cleaned data.csv'.")
