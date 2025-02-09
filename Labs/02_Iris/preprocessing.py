@@ -24,4 +24,10 @@ def preprocess_data(data):
 if __name__ == "__main__":
     data = load_data()  # Load the Iris dataset
     data = preprocess_data(data)  # Preprocess the dataset (scaling)
-    print(data.head())
+    # Save the preprocessed data to a CSV file (but it will be ignored by Git)
+    data.to_csv("cleaned_data.csv", index=False) # This file will be
+print("Preprocessed data saved as 'cleaned
+_
+data.csv'
+.
+")
